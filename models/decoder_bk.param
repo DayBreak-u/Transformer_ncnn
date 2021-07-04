@@ -1,0 +1,143 @@
+7767517
+141 161
+Input                    0                        0 1 0
+Input                    1                        0 1 1
+Input                    input.8                  0 1 input.8
+Split                    splitncnn_input2         1 6 input.8 input.8_splitncnn_0 input.8_splitncnn_1 input.8_splitncnn_2 input.8_splitncnn_3 input.8_splitncnn_4 input.8_splitncnn_5
+Eltwise                  Add_2                    2 1 0 1 67 0=1 -23301=2,1.600000e+01,1.000000e+00
+Split                    splitncnn_0              1 4 67 67_splitncnn_0 67_splitncnn_1 67_splitncnn_2 67_splitncnn_3
+InnerProduct             MatMul_6                 1 1 67_splitncnn_3 73 0=256 1=1 2=65536
+InnerProduct             MatMul_8                 1 1 67_splitncnn_2 76 0=256 1=1 2=65536
+InnerProduct             MatMul_10                1 1 67_splitncnn_1 79 0=256 1=1 2=65536
+Reshape                  Reshape_14               1 1 73 88 0=32 1=8 2=-1
+Permute                  Transpose_15             1 1 88 89 0=2
+Reshape                  Reshape_18               1 1 76 98 0=32 1=8 2=-1
+Reshape                  Reshape_21               1 1 79 107 0=32 1=8 2=-1
+Permute                  Transpose_22             1 1 107 108 0=2
+Permute                  Transpose_23             1 1 98 109 0=3
+TransformerGemm                     MatMul_24                2 1 89 109 110
+BinaryOp                 Div_26                   1 1 110 112 0=3 1=1 2=5.656854e+00
+TransformerMask          Mask_26                  1 1 112 Mask_26
+Softmax                  Softmax_27               1 1 Mask_26 113 0=2 1=1
+TransformerGemm                     MatMul_28                2 1 113 108 114
+Permute                  Transpose_29             1 1 114 115 0=2
+Reshape                  Reshape_32               1 1 115 122 0=256 1=-1
+InnerProduct             MatMul_33                1 1 122 125 0=256 1=1 2=65536
+BinaryOp                 Add_35                   2 1 67_splitncnn_0 125 126
+LayerNorm                Div_44                   1 1 126 135 2=0
+Split                    splitncnn_1              1 2 135 135_splitncnn_0 135_splitncnn_1
+InnerProduct             MatMul_48                1 1 135_splitncnn_1 141 0=256 1=1 2=65536
+InnerProduct             MatMul_50                1 1 input.8_splitncnn_5 144 0=256 1=1 2=65536
+InnerProduct             MatMul_52                1 1 input.8_splitncnn_4 147 0=256 1=1 2=65536
+Reshape                  Reshape_56               1 1 141 156 0=32 1=8 2=-1
+Permute                  Transpose_57             1 1 156 157 0=2
+Reshape                  Reshape_60               1 1 144 166 0=32 1=8 2=-1
+Reshape                  Reshape_63               1 1 147 175 0=32 1=8 2=-1
+Permute                  Transpose_64             1 1 175 176 0=2
+Permute                  Transpose_65             1 1 166 177 0=3
+TransformerGemm                     MatMul_66                2 1 157 177 178
+BinaryOp                 Div_68                   1 1 178 180 0=3 1=1 2=5.656854e+00
+TransformerMask          Mask_68                  1 1 180 Mask_68
+Softmax                  Softmax_69               1 1 Mask_68 181 0=2 1=1
+TransformerGemm                     MatMul_70                2 1 181 176 182
+Permute                  Transpose_71             1 1 182 183 0=2
+Reshape                  Reshape_74               1 1 183 190 0=256 1=-1
+InnerProduct             MatMul_75                1 1 190 193 0=256 1=1 2=65536
+BinaryOp                 Add_77                   2 1 135_splitncnn_0 193 194
+LayerNorm                Div_86                   1 1 194 203 2=0
+Split                    splitncnn_2              1 2 203 203_splitncnn_0 203_splitncnn_1
+InnerProduct             MatMul_87                1 1 203_splitncnn_1 207 0=512 1=1 2=131072 9=1
+InnerProduct             MatMul_90                1 1 207 210 0=256 1=1 2=131072
+BinaryOp                 Add_92                   2 1 203_splitncnn_0 210 211
+LayerNorm                Div_101                  1 1 211 220 2=0
+Split                    splitncnn_3              1 4 220 220_splitncnn_0 220_splitncnn_1 220_splitncnn_2 220_splitncnn_3
+InnerProduct             MatMul_105               1 1 220_splitncnn_3 226 0=256 1=1 2=65536
+InnerProduct             MatMul_107               1 1 220_splitncnn_2 229 0=256 1=1 2=65536
+InnerProduct             MatMul_109               1 1 220_splitncnn_1 232 0=256 1=1 2=65536
+Reshape                  Reshape_113              1 1 226 241 0=32 1=8 2=-1
+Permute                  Transpose_114            1 1 241 242 0=2
+Reshape                  Reshape_117              1 1 229 251 0=32 1=8 2=-1
+Reshape                  Reshape_120              1 1 232 260 0=32 1=8 2=-1
+Permute                  Transpose_121            1 1 260 261 0=2
+Permute                  Transpose_122            1 1 251 262 0=3
+TransformerGemm                     MatMul_123               2 1 242 262 263
+BinaryOp                 Div_125                  1 1 263 265 0=3 1=1 2=5.656854e+00
+TransformerMask          Mask_125                 1 1 265 Mask_125
+Softmax                  Softmax_126              1 1 Mask_125 266 0=2 1=1
+TransformerGemm                     MatMul_127               2 1 266 261 267
+Permute                  Transpose_128            1 1 267 268 0=2
+Reshape                  Reshape_131              1 1 268 275 0=256 1=-1
+InnerProduct             MatMul_132               1 1 275 278 0=256 1=1 2=65536
+BinaryOp                 Add_134                  2 1 220_splitncnn_0 278 279
+LayerNorm                Div_143                  1 1 279 288 2=0
+Split                    splitncnn_4              1 2 288 288_splitncnn_0 288_splitncnn_1
+InnerProduct             MatMul_147               1 1 288_splitncnn_1 294 0=256 1=1 2=65536
+InnerProduct             MatMul_149               1 1 input.8_splitncnn_3 297 0=256 1=1 2=65536
+InnerProduct             MatMul_151               1 1 input.8_splitncnn_2 300 0=256 1=1 2=65536
+Reshape                  Reshape_155              1 1 294 309 0=32 1=8 2=-1
+Permute                  Transpose_156            1 1 309 310 0=2
+Reshape                  Reshape_159              1 1 297 319 0=32 1=8 2=-1
+Reshape                  Reshape_162              1 1 300 328 0=32 1=8 2=-1
+Permute                  Transpose_163            1 1 328 329 0=2
+Permute                  Transpose_164            1 1 319 330 0=3
+TransformerGemm                     MatMul_165               2 1 310 330 331
+BinaryOp                 Div_167                  1 1 331 333 0=3 1=1 2=5.656854e+00
+TransformerMask          Mask_167                 1 1 333 Mask_167
+Softmax                  Softmax_168              1 1 Mask_167 334 0=2 1=1
+TransformerGemm                     MatMul_169               2 1 334 329 335
+Permute                  Transpose_170            1 1 335 336 0=2
+Reshape                  Reshape_173              1 1 336 343 0=256 1=-1
+InnerProduct             MatMul_174               1 1 343 346 0=256 1=1 2=65536
+BinaryOp                 Add_176                  2 1 288_splitncnn_0 346 347
+LayerNorm                Div_185                  1 1 347 356 2=0
+Split                    splitncnn_5              1 2 356 356_splitncnn_0 356_splitncnn_1
+InnerProduct             MatMul_186               1 1 356_splitncnn_1 360 0=512 1=1 2=131072 9=1
+InnerProduct             MatMul_189               1 1 360 363 0=256 1=1 2=131072
+BinaryOp                 Add_191                  2 1 356_splitncnn_0 363 364
+LayerNorm                Div_200                  1 1 364 373 2=0
+Split                    splitncnn_6              1 4 373 373_splitncnn_0 373_splitncnn_1 373_splitncnn_2 373_splitncnn_3
+InnerProduct             MatMul_204               1 1 373_splitncnn_3 379 0=256 1=1 2=65536
+InnerProduct             MatMul_206               1 1 373_splitncnn_2 382 0=256 1=1 2=65536
+InnerProduct             MatMul_208               1 1 373_splitncnn_1 385 0=256 1=1 2=65536
+Reshape                  Reshape_212              1 1 379 394 0=32 1=8 2=-1
+Permute                  Transpose_213            1 1 394 395 0=2
+Reshape                  Reshape_216              1 1 382 404 0=32 1=8 2=-1
+Reshape                  Reshape_219              1 1 385 413 0=32 1=8 2=-1
+Permute                  Transpose_220            1 1 413 414 0=2
+Permute                  Transpose_221            1 1 404 415 0=3
+TransformerGemm                     MatMul_222               2 1 395 415 416
+BinaryOp                 Div_224                  1 1 416 418 0=3 1=1 2=5.656854e+00
+TransformerMask          Mask_224                 1 1 418 Mask_224
+Softmax                  Softmax_225              1 1 Mask_224 419 0=2 1=1
+TransformerGemm                     MatMul_226               2 1 419 414 420
+Permute                  Transpose_227            1 1 420 421 0=2
+Reshape                  Reshape_230              1 1 421 428 0=256 1=-1
+InnerProduct             MatMul_231               1 1 428 431 0=256 1=1 2=65536
+BinaryOp                 Add_233                  2 1 373_splitncnn_0 431 432
+LayerNorm                Div_242                  1 1 432 441 2=0
+Split                    splitncnn_7              1 2 441 441_splitncnn_0 441_splitncnn_1
+InnerProduct             MatMul_246               1 1 441_splitncnn_1 447 0=256 1=1 2=65536
+InnerProduct             MatMul_248               1 1 input.8_splitncnn_1 450 0=256 1=1 2=65536
+InnerProduct             MatMul_250               1 1 input.8_splitncnn_0 453 0=256 1=1 2=65536
+Reshape                  Reshape_254              1 1 447 462 0=32 1=8 2=-1
+Permute                  Transpose_255            1 1 462 463 0=2
+Reshape                  Reshape_258              1 1 450 472 0=32 1=8 2=-1
+Reshape                  Reshape_261              1 1 453 481 0=32 1=8 2=-1
+Permute                  Transpose_262            1 1 481 482 0=2
+Permute                  Transpose_263            1 1 472 483 0=3
+TransformerGemm                     MatMul_264               2 1 463 483 484
+BinaryOp                 Div_266                  1 1 484 486 0=3 1=1 2=5.656854e+00
+TransformerMask          Mask_266                 1 1 486 Mask_266
+Softmax                  Softmax_267              1 1 Mask_266 487 0=2 1=1
+TransformerGemm                     MatMul_268               2 1 487 482 488
+Permute                  Transpose_269            1 1 488 489 0=2
+Reshape                  Reshape_272              1 1 489 496 0=256 1=-1
+InnerProduct             MatMul_273               1 1 496 499 0=256 1=1 2=65536
+BinaryOp                 Add_275                  2 1 441_splitncnn_0 499 500
+LayerNorm                Div_284                  1 1 500 509 2=0
+Split                    splitncnn_8              1 2 509 509_splitncnn_0 509_splitncnn_1
+InnerProduct             MatMul_285               1 1 509_splitncnn_1 513 0=512 1=1 2=131072 9=1
+InnerProduct             MatMul_288               1 1 513 516 0=256 1=1 2=131072
+BinaryOp                 Add_290                  2 1 509_splitncnn_0 516 517
+LayerNorm                Div_299                  1 1 517 526 2=0
+InnerProduct             MatMul_300               1 1 526 out1 0=18244 1=1 2=4670464
